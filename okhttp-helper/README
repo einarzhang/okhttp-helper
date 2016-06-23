@@ -1,0 +1,44 @@
+# okhttp-helper
+
+对okhttp进行一系列封装，达到在java和android平台能够更便携的开发http相关功能
+
+okhttp-helper主要提供了以下封装和支持：
+<br />1 更加便捷的get/post请求
+<br />2 支持多个http请求客户连接，互不干扰
+<br />3 支持http请求重用，能够更加快速开发诸如模拟登陆抓取信息等多步骤功能
+<br />4 支持同步/异步两种方式的请求
+
+#使用实例
+1 get异步实例
+
+ HttpClientKit.getOrCreate()
+ 
+    .get("http://www.baidu.com/");
+  
+2 get同步实例
+
+ HttpClientKit.getOrCreate().asyn(false)
+ 
+    .get("http://www.baidu.com/");
+  
+3 post提交表单实例
+
+ FormBody body = new FormBody.Builder()
+ 
+                .add("from", "zh")
+                
+                .add("to", "en")
+                
+                .add("query", "翻译")
+                
+                .add("transtype", "realtime")
+                
+                .add("simple_means_flag", "3")
+                
+                .build();
+                
+ data = HttpClientKit.getOrCreate(UUID.randomUUID().toString())
+ 
+                .asyn(false)
+                
+                .post("http://fanyi.baidu.com/v2transapi", body);
